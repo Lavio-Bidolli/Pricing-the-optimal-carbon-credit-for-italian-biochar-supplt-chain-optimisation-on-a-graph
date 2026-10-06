@@ -20,72 +20,116 @@ As team leader of **EcoPoli**, one of the Politecnico's student teams, I met bio
 
 ## 2. The data problem
 
-I picked up the literature and entered the field, focusing on Italy.
+I picked up the literature and entered the field, focusing on Italy. **Every figure in this section is my own, built from my own review of the market literature** — there was no ready-made dataset to draw on.
 
 ![The European biochar market, 2024–2026](images/european_market.png)
 
-The European market grows — around 205 biochar plants cumulatively by end-2025, a larger base expected in 2026 — **but Italy never appears explicitly**, and the available market data lack transparency, scale, or territorial depth. The standard tools of complex systems did not help:
+The European market grows — around 205 biochar plants cumulatively by end-2025, a larger base expected in 2026 — **but Italy never appears explicitly**, and the available market data lack transparency, scale, or territorial depth.
+
+On the biomass side, the official Italian sources are worse: each is a top-down aggregate or a modelled potential, and none measures what is actually on the ground.
+
+| Source | What it gives | Why it falls short |
+|---|---|---|
+| **ENEA — Biomass Atlas** | Potential of agro-industrial residues, national scale | **Never completed**, funding cut |
+| **JRC — EU Biomass Flows** | Harmonised EU biomass production & trade, aggregated as fluxes | **Categories indiscernible**; no domestic-vs-import split |
+| **S2Biom — Italy roadmap** | Technical potential 2030: 34.4 Mt/yr dry matter | A **modelled** 2030 projection, theoretical; not sited, not measured |
+| **CRRA — Annex A** | Most recent national study; aggregates the above | **Internal inconsistencies** in the biochar data — which I found and flagged to the authors |
+
+The consequence is that the usual tools of complex systems do not apply:
 
 - **Financial / stochastic models** (as used for biofuels) are impossible: the time series simply do not exist.
 - **Agent-based modelling** finds no well-defined agents: Italian producers barely interact, markets are highly localised, players are few and use near-identical technologies and business models.
-- **Biomass data** are worse — scarce, outdated, incomplete or merely theoretical. The one national effort meant to anchor such studies, by **ENEA**, had its funding cut in 2019.
 
-A lead appeared with **Grimm, Niazmand & Runge (2026)**, a two-stage supply-chain optimisation for biochar from paper sludge, built on production and plant data disclosed by a large German company. The approach was transferable to Italy — except that, in Italy, the data did not exist.
+## 3. From a vague interest to a precise question
 
-## 3. Building the dataset — I picked up the phone
+Two things turned this into a workable question.
+
+**The target came from the field, not from the desk.** Talking to the companies, I learned that the relevant competitor for biochar is **carbon black**: **Pirelli** had approached **Biodea** looking for biochar as a less-polluting substitute for carbon black in tyre production. That conversation, not the literature, is what fixed the economic benchmark — an existing industrial demand and a price to beat.
+
+**The method came from one article.** Among a scattered literature, Grimm et al. (2026) was the lead:
+
+> *"A candle of hope appears when I discovered Grimm's 2026 article: they study the European supply-chain market with an optimisation model for biochar produced from paper sludge; they had access to an important German company which disclosed to them their production and plant data, so they built a model to compute how to price a carbon credit — a financial tool to get money from the carbon dioxide subtracted from the atmosphere — in order to make the whole biochar-selling system break even, i.e. revenues equal costs."*
+
+What inspired me was narrow and specific: **they had the data**. A real company had disclosed its production and plant figures, so a supply-chain optimisation could actually be built. The approach was transferable to Italy — except that, in Italy, the data did not exist.
+
+### Building the dataset — I picked up the phone
 
 So I built the dataset no registry would give me. I called the wood-chip (biomass) producers and the biochar companies myself, one by one.
 
 ![Producer survey: companies and demand](images/producer_survey.png)
 
-Out of **131 wood-chip producers** called, **32** gave usable numbers and became **geolocalised nodes** of a graph of northern Italy; of the few **biochar producers active in Italy**, Biodea is the one documented in detail. One finding mattered beyond the numbers: **Pirelli** approached Biodea seeking biochar as a less-polluting substitute for carbon black — evidence that an **industrial demand** exists. The available biomass is roughly **ten times** the demand implied by that use: the bottleneck is not the resource.
+Out of **131 wood-chip producers** called, **32** gave usable numbers and became **geolocalised nodes**, reduced to the **22** that enter the model; of the few **biochar producers active in Italy**, Biodea is the one documented in detail. The available biomass is roughly **ten times** the demand implied by the carbon-black substitution: the bottleneck is not the resource.
 
-## 4. The research question
+### The research question
 
 > **At what price should a carbon credit be set so that an optimised Italian biochar supply chain covers its costs while selling biochar at a price competitive with carbon black?**
 
-## 5. The model
+## 4. The model
 
 **What it does.** The model takes as inputs the biomass nodes, the engineering specifications of the plants, the distances between nodes, the cost of building a new plant, and the transport cost of moving biomass. Subject to the condition that **every node must use all its feedstock** — processing it in its own plant or selling it to another node — it returns the **optimised geography** of the supply chain and the **capacity of each open plant**, then computes the carbon credit that makes costs and revenues break even.
 
 **The tension at its core.** The whole problem is a single trade between two opposing pulls:
 
 ![Scale versus transport — the cost function](images/scale_transport_tension.jpg)
+*Conceptual illustration of the model's tension, generated by the author with Google Gemini.*
 
 - **Centralise** and exploit economies of scale — doubling a plant's capacity costs less than double;
 - **Stay sparse** and save on transport cost — and therefore on emissions. Less transport means **more net CO₂ removed**.
 
-**The objective.** The break-even carbon credit is
+### The break-even credit
 
-$$ p^\star = \frac{1}{\mathrm{CO_2^{net}}}\left[\ \sum_j C_j \;+\; K^{\mathrm{tr}} \;+\; K^{\mathrm{mat}} \;-\; Rv\ \right] $$
+The model is solved in two stages: **Stage A** is a location–allocation problem that fixes the layout by minimising fixed plus transport cost; **Stage B** takes that layout and computes its full economic and carbon balance, from which the single figure of merit is extracted — the **break-even carbon credit** $p^\star$, the credit price that exactly cancels the chain's deficit:
 
-minimised over the supply-chain layout, where the net CO₂ removed is computed through a **life-cycle assessment following the Puro.earth** methodology — the procedure actually used by the leading carbon-credit market.
+$$ p^\star \;=\; \frac{\text{full annual cost} \;-\; \text{annual revenues}}{\text{net CO}_2\text{ removed per year}} \;=\; \frac{\displaystyle\sum_j C_j \;+\; K^{\mathrm{tr}} \;+\; K^{\mathrm{mat}} \;-\; Rv}{\mathrm{CO_2^{net}}} $$
 
-![From the optimised network to the credit price](images/network_to_credit.png)
+The net CO₂ removed is computed through a **life-cycle assessment following the Puro.earth** methodology — the procedure actually used by the leading carbon-credit market. The full annual cost is the sum of three blocks, built and simplified below.
 
-### Cost function and the simplifications it took
+### The cost function, built and simplified
 
-The cost function has four blocks: **opening plants**, **transport**, **revenues**, and **biomass purchase**. Turning Grimm's general formulation into something that fits the Italian case — and stays solvable — required deliberate, stated simplifications:
+The general two-stage formulation of Grimm et al. was adapted to the Italian case by stripping away what Italy does not have, and keeping the model solvable. Each simplification is deliberate and stated.
 
-- **Sub-product plants are dropped**: refining of by-products is treated as happening in the producing plant, not in new dedicated nodes.
-- **A single conversion technology**, because at present only one is actually in use in Italy; technology choice is left to future work.
-- **Static model**: one annual period, so the time index is removed.
-- **Transport = flat tariff × distance**, with great-circle (haversine) distances, because the interviews were not precise enough to assign a specific cost to each link.
+**Fixed cost — the only nonlinear block, and the one that carries economies of scale.** With no detailed cost data, capital cost follows the engineering **six-tenths rule**; annualised through the capital recovery factor (CRF) and augmented by a fixed-OPEX fraction, the annual fixed cost of an open plant of capacity $y$ is
 
-What remains is a fixed cost that is **concave in capacity** (the economy-of-scale "0.6 power" law) and must be charged **only when a plant is open**.
+$$ F(y) \;=\; \bigl(\mathrm{CRF} + f_{\mathrm{OPEX}}\bigr)\, K_{\mathrm{ref}} \left(\frac{y}{y_{\mathrm{ref}}}\right)^{0.6}, \qquad \mathrm{CRF} = \frac{r\,(1+r)^{n}}{(1+r)^{n}-1} $$
 
-### The two nonlinearities, and how they are handled
+so a plant $k$ times larger costs only $k^{0.6}$ times as much — the incentive to concentrate. Capacity is tied to the biomass actually routed to the plant, $\sum_i z_{ij} S_i \le y_j H$.
 
-The two nonlinearities are what make the problem interesting — and non-linear. Both are linearised so the problem becomes a MILP:
+This block carries **two nonlinearities** that a linear solver cannot take: the concave $y^{0.6}$ curve, and the product $x_j y_j$ (the fixed cost must be charged *only* when the plant is open, $x_j=1$). Grimm handled these with a single straight-line approximation plus a McCormick envelope; reproduced here, it failed outside the capacity window $[y_{\min},y_{\max}]$, wrongly refusing to aggregate small plants. They were replaced by a **piecewise-linear (PWL) surrogate** accurate over the whole domain, with the open/closed switch folded into the interpolation weights:
 
 ![Economies of scale and its piecewise-linear surrogate](images/economies_of_scale_pwl.png)
 
-- **Economies of scale** ($\text{cost}\propto y^{0.6}$, so a plant twice as big costs only $\approx 2^{0.6}\approx 1.5\times$): the curve is sampled at breakpoints and each plant's cost and capacity are written as a weighted average of the two nearest breakpoints, with **at most two adjacent weights non-zero**.
-- **The open/closed switch** (the fixed cost multiplies a binary "is the plant open?" variable): handled with a bilinear trick — the interpolation weights sum to **1 if the plant is open, 0 otherwise**.
+$$ y_j = \sum_{k}\lambda_{jk}\,\hat y_k, \qquad C_j = \sum_{k}\lambda_{jk}\,\hat c_k, \qquad \sum_{k}\lambda_{jk} = x_j $$
 
-The result is a **mixed-integer linear program (MILP)** solved by **branch-and-bound** through the **Pyomo** library.
+The normalisation $\sum_k \lambda_{jk}=x_j$ does double duty: when $x_j=0$ every weight is zero, so $y_j=C_j=0$ and the bilinear product is never written; when $x_j=1$ the weights sum to one and land on the curve, while an adjacency (SOS2) condition keeps **at most two adjacent weights non-zero**, so a single segment is used.
 
-## 6. Results
+**Material cost — the dominant term, and the one the optimiser cannot touch.**
+
+$$ K^{\mathrm{mat}} \;=\; \sum_{i,j} z_{ij}\,S_i\,\pi_i \;+\; \rho_{\mathrm{res}}\,B\,g $$
+
+Because every producer's biomass is fully allocated somewhere ($\sum_j z_{ij}=1$), the purchase term collapses to $\sum_i S_i \pi_i$ — **a constant, independent of the layout**. At base data it is ≈ **16.0 M€/yr**, larger on its own than the chain's total revenues. This is the structural reason the credit comes out high, and why spatial optimisation can only ever be a secondary lever.
+
+**Transport cost — the counterweight to economies of scale.**
+
+$$ K^{\mathrm{tr}} \;=\; \sum_{i,j} \tau\, d_{ij}\, S_i\, z_{ij} $$
+
+with $d_{ij}$ the great-circle (haversine) distance and $\tau$ a flat tariff per tonne-kilometre. Concentrating the supply lowers the fixed cost but raises this term; the optimum balances the two.
+
+**Simplifications made explicit.** Sub-product (upgrading) plants are dropped — Italy has none, so by-products are refined on site. A **single conversion technology** is kept, because only one is currently in use. The model is **static** (one annual period, no time index). Transport uses **straight-line distances** (the road detour is absorbed into $\tau$) and a **single flat tariff** (no load-, direction- or vehicle-dependence), and only inbound feedstock transport is counted. Feedstock is assumed to be of a single quality, so its price $\pi$ is uniform and only swept in the sensitivity analysis.
+
+**Solver.** The assembled problem is a **mixed-integer linear program (MILP)**, solved by **branch-and-bound** through the **Pyomo** library.
+
+| Symbol | Meaning | Base value |
+|---|---|---|
+| $R$ | scale exponent (six-tenths rule) | 0.6 |
+| $K_{\mathrm{ref}},\,y_{\mathrm{ref}}$ | reference CAPEX, capacity | 26.6 M€, 5 t·h⁻¹ |
+| $r,\,n$ | discount rate, plant lifetime | 0.06, 20 yr |
+| $f_{\mathrm{OPEX}}$ | fixed OPEX, fraction of CAPEX | 0.02 (0.028 modular) |
+| $H$ | effective operating hours (90% availability) | ≈ 7 884 h·yr⁻¹ |
+| $n_{\mathrm{seg}}$ | PWL segments | 15 |
+| $B$ | total biomass processed | ≈ 144 900 t·yr⁻¹ |
+| $\tau$ | transport tariff (swept 0.077 / 0.3 / 1.0) | 0.077 €·t⁻¹·km⁻¹ |
+
+## 5. Results
 
 **Validation.** A deliberately controllable, unrealistic scenario — identical Biodea modules stacked in parallel, no economies of scale — behaves exactly as expected: cost grows linearly, and the arrows reveal non-obvious optima such as switched-off nodes and biomass hauled to saturate a module before opening a new one.
 
@@ -113,7 +157,7 @@ The result is a **mixed-integer linear program (MILP)** solved by **branch-and-b
 
 **Headline.** Under highly conservative assumptions, a carbon credit in the range of **251 – 1,108 €/tCO₂** (economies of scale exploited vs. not exploited) lets biochar reach a selling price (~0.12 €/kg) competitive with carbon black at the volumes the market would require.
 
-## 7. Conclusion
+## 6. Conclusion
 
 What blocks biochar in Italy is **not the resource** — the biomass is there, about ten times over. The binding constraints are **bureaucratic, logistical and administrative coordination**, and a credit price that today only a favourable configuration of parameters can reach. The spatial optimisation is a real but secondary lever next to the biomass price.
 
