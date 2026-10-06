@@ -80,9 +80,9 @@ Out of **131 wood-chip producers** called, **32** gave usable numbers and became
 
 The model is solved in two stages: **Stage A** is a location–allocation problem that fixes the layout by minimising fixed plus transport cost; **Stage B** takes that layout and computes its full economic and carbon balance, from which the single figure of merit is extracted — the **break-even carbon credit** $p^\star$, the credit price that exactly cancels the chain's deficit:
 
-$$ p^\star \;=\; \frac{\text{full annual cost} \;-\; \text{annual revenues}}{\text{net CO}_2\text{ removed per year}} \;=\; \frac{\displaystyle\sum_j C_j \;+\; K^{\mathrm{tr}} \;+\; K^{\mathrm{mat}} \;-\; Rv}{\mathrm{CO_2^{net}}} $$
+$$ p^\star \;=\; \frac{\text{full annual cost} \;-\; \text{annual revenues}}{\text{net CO}_2\text{ removed per year}} \;=\; \frac{\displaystyle K^{\mathrm{fix}} \;+\; K^{\mathrm{tr}} \;+\; K^{\mathrm{mat}} \;-\; Rv}{\mathrm{CO_2^{net}}} $$
 
-The net CO₂ removed is computed through a **life-cycle assessment following the Puro.earth** methodology — the procedure actually used by the leading carbon-credit market. The full annual cost is the sum of three blocks, built and simplified below.
+The net CO₂ removed is computed through a **life-cycle assessment following the Puro.earth** methodology — the procedure actually used by the leading carbon-credit market. The full annual cost is the sum of three blocks — the fixed cost $K^{\mathrm{fix}}=\sum_j C_j$, the transport cost $K^{\mathrm{tr}}$ and the material cost $K^{\mathrm{mat}}$ — built and simplified below.
 
 ### The cost function, built and simplified
 
