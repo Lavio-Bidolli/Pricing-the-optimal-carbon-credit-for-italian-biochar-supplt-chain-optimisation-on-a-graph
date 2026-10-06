@@ -1,0 +1,15 @@
+# ambiente virtuale Python
+.venv/
+__pycache__/
+*.pyc
+# file di compilazione LaTeX
+*.aux
+*.bbl
+*.blg
+*.bcf
+*.out
+*.log
+*.toc
+*.lof
+*.lot
+*.run.xml
