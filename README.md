@@ -118,16 +118,32 @@ with $d_{ij}$ the great-circle (haversine) distance and $\tau$ a flat tariff per
 
 **Solver.** The assembled problem is a **mixed-integer linear program (MILP)**, solved by **branch-and-bound** through the **Pyomo** library.
 
-| Symbol | Meaning | Base value |
-|---|---|---|
-| $R$ | scale exponent (six-tenths rule) | 0.6 |
-| $K_{\mathrm{ref}},\,y_{\mathrm{ref}}$ | reference CAPEX, capacity | 26.6 M€, 5 t·h⁻¹ |
-| $r,\,n$ | discount rate, plant lifetime | 0.06, 20 yr |
-| $f_{\mathrm{OPEX}}$ | fixed OPEX, fraction of CAPEX | 0.02 (0.028 modular) |
-| $H$ | effective operating hours (90% availability) | ≈ 7 884 h·yr⁻¹ |
-| $n_{\mathrm{seg}}$ | PWL segments | 15 |
-| $B$ | total biomass processed | ≈ 144 900 t·yr⁻¹ |
-| $\tau$ | transport tariff (swept 0.077 / 0.3 / 1.0) | 0.077 €·t⁻¹·km⁻¹ |
+| Symbol | Meaning |
+|---|---|
+| $R$ | scale exponent (six-tenths rule) |
+| $K_{\mathrm{ref}},\,y_{\mathrm{ref}}$ | reference CAPEX and capacity |
+| $r,\,n$ | discount rate, plant lifetime |
+| $f_{\mathrm{OPEX}}$ | fixed OPEX, as a fraction of CAPEX |
+| $H$ | effective operating hours per year |
+| $n_{\mathrm{seg}}$ | number of PWL segments |
+| $B$ | total biomass processed, $\sum_i S_i$ |
+| $\tau$ | flat transport tariff (per tonne-kilometre) |
+
+### The carbon side — the life-cycle balance (Puro.earth)
+
+The denominator of $p^\star$ is the net CO₂ actually removed, drawn **following the Puro.earth methodology** — the procedure of the carbon-credit market the chain would sell into. The removal proper is the carbon locked in the biochar and expected to stay there over the hundred-year horizon used for carbon-removal accounting: of each tonne of biochar a fraction $\chi_C$ is carbon, of which a stable fraction $\chi_{\mathrm{stab}}$ survives (taken at **0.80**, the conservative end of the European Biochar Certificate range, so as not to over-credit), converted to CO₂ by the molar ratio $44/12$:
+
+$$ \mathrm{CO_2^{seq}} \;=\; \rho_{\mathrm{bc}}\,B\,\chi_C\,\chi_{\mathrm{stab}}\,\frac{44}{12} $$
+
+Against this are set the emissions the removal itself causes, grouped — as Puro.earth prescribes — into biomass supply, production and end-use:
+
+$$ \mathrm{CO_2^{em}} \;=\; \underbrace{\mathrm{TK}\,e_{\mathrm{tr}}}_{\text{supply}} \;+\; \underbrace{B\,e_{\mathrm{pr}} + E\,e_{\mathrm{grid}} + K^{\mathrm{fix}}\,e_{\mathrm{cap}}}_{\text{production}} \;+\; \underbrace{\rho_{\mathrm{bc}}\,B\,\bigl(e_{\mathrm{use}} + \bar d\,e_{\mathrm{tr}}\bigr)}_{\text{end-use}} $$
+
+$$ \mathrm{CO_2^{net}} \;=\; \mathrm{CO_2^{seq}} - \mathrm{CO_2^{em}} $$
+
+where $\mathrm{TK}$ is the same tonne-kilometre aggregate that the transport cost is charged on (so a far-shipping layout is penalised twice, in euros and in CO₂), and the $e_\bullet$ are the emission factors of haulage, conversion, grid electricity, embodied capital and end-use.
+
+Adopting this framework carries a substantive assumption, made explicit in the thesis: **the biochar sold is taken to be stable enough to count as a durable carbon removal under Puro.earth's procedures** — and it is precisely the permanence fraction $\chi_{\mathrm{stab}}$ that encodes it, kept conservative on purpose. At base data the sequestration is ≈ 68,000 tCO₂/yr and the supply emissions ≈ 2,700 t (the other terms zero at this stage), so the net removal is ≈ 65,300 tCO₂/yr — the emissions shave about 3.9% off the gross removal.
 
 ## 5. Results
 
