@@ -13,3 +13,9 @@ __pycache__/
 *.lof
 *.lot
 *.run.xml
+
+# output del modello e cache python
+results/
+model/results/
+__pycache__/
+*.pyc

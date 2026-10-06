@@ -1,4 +1,4 @@
-# Pricing an optimal carbon credit for a competitive Italian biochar supply chain
+# A graph-based optimisation model for pricing an optimal carbon credit in the Northern-Italian biochar supply chain
 
 **MSc thesis — Physics of Complex Systems, Politecnico di Torino (2026)**
 Candidate: **Flavio Bidolli** · Advisors: **Prof. Mauro Giorcelli**, **Mattia Bartoli**
@@ -189,6 +189,20 @@ Instagram: [@eco_poli](https://www.instagram.com/eco_poli/)
 ## Acknowledgements
 
 I thank my advisors **Mattia Bartoli** and **Mauro Giorcelli** for the opportunity of this work; the **CREA** association, in particular **Irene Criscuoli**, **Valentina Lasorella** and **Prof. David Chiaramonti**, for their time and advice; **Silvia Scozzafaglia** for her contribution on the carbon-credit component; and **Kiana Niazmand**, co-author of the reference article, for answering my questions about it. Thanks to the wood-chip producers who took part in the interviews, and to the companies that collaborated — **Biodea, AIEL, NeraBiochar, Moonlight Biochar, McMillan Agrotech, Evergreen Resources, Comim** — with a special thanks to **Francesco Barbagli** (Biodea).
+
+---
+
+## The optimisation model (code)
+
+The model described above is included, as a small, self-contained and runnable
+program, in the [`model/`](model/) folder. It represents the supply chain as a
+**graph** of producer nodes and solves the two-stage **optimisation model** —
+Stage A (a mixed-integer linear program that sites the plants and routes the
+chips) and Stage B (the life-cycle balance that yields the break-even carbon
+credit). It runs on the thesis's real geography, **anonymised and
+privacy-perturbed**, so it reproduces the behaviour of the real study without
+exposing any producer. See [`model/README.md`](model/README.md) for how to run
+it and which parameters to vary.
 
 ---
 
