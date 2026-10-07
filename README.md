@@ -44,24 +44,22 @@ The consequence is that the usual tools of complex systems do not apply:
 
 Two things turned this into a workable question.
 
-**The target came from the field, not from the desk.** Talking to the companies, I learned that the relevant competitor for biochar is **carbon black**: **Pirelli** had approached **Biodea** looking for biochar as a less-polluting substitute for carbon black in tyre production. That conversation, not the literature, is what fixed the economic benchmark — an existing industrial demand and a price to beat.
+**The target came from the field, not from the desk.** Talking to the companies, I learned that the relevant competitor for biochar is **carbon black**: An **industrial demand** had appeared from **rubber industry** looking for biochar as a less-polluting substitute for carbon black in tyre production. That conversation, not the literature, is what fixed the economic benchmark — an existing industrial demand and a price to beat.
 
 **The method came from one article.** Among a scattered literature, Grimm et al. (2026) was the lead:
 
 > *"A candle of hope appears when I discovered Grimm's 2026 article: they study the European supply-chain market with an optimisation model for biochar produced from paper sludge; they had access to an important German company which disclosed to them their production and plant data, so they built a model to compute how to price a carbon credit — a financial tool to get money from the carbon dioxide subtracted from the atmosphere — in order to make the whole biochar-selling system break even, i.e. revenues equal costs."*
 
-What inspired me was narrow and specific: **they had the data**. A real company had disclosed its production and plant figures, so a supply-chain optimisation could actually be built. The approach was transferable to Italy — except that, in Italy, the data did not exist.
-
 ### Building the dataset — I picked up the phone
 
-So I built the dataset no registry would give me. I called the wood-chip (biomass) producers and the biochar companies myself, one by one.
+The data for Italy were just non-existent; so I called the wood-chip (biomass) producers and the biochar companies myself, one by one; even writing down their complains.
 
 ![Producer survey: companies and demand](images/producer_survey.png)
 
 Out of **131 wood-chip producers** called, **32** gave usable numbers and became **geolocalised nodes**, reduced to the **22** that enter the model; of the few **biochar producers active in Italy**, Biodea is the one documented in detail. The available biomass is roughly **ten times** the demand implied by the carbon-black substitution: the bottleneck is not the resource.
 
 ### The research question
-
+Putting everything together a single, precise, final research question could be asked:
 > **At what price should a carbon credit be set so that an optimised Italian biochar supply chain covers its costs while selling biochar at a price competitive with carbon black?**
 
 ## 4. The model
@@ -147,7 +145,7 @@ Adopting this framework carries a substantive assumption, made explicit in the t
 
 ## 5. Results
 
-**Validation.** A deliberately controllable, unrealistic scenario — identical Biodea modules stacked in parallel, no economies of scale — behaves exactly as expected: cost grows linearly, and the arrows reveal non-obvious optima such as switched-off nodes and biomass hauled to saturate a module before opening a new one.
+**Validation.** A deliberately controllable, unrealistic scenario — identical small modules stacked in parallel, no economies of scale — behaves exactly as expected: cost grows linearly, and the arrows reveal non-obvious optima such as switched-off nodes and biomass hauled to saturate a module before opening a new one.
 
 ![Validation — Biodea modules in parallel](images/validation_biodea.png)
 
