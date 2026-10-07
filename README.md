@@ -208,4 +208,4 @@ it and which parameters to vary.
 
 This is a narrated summary of the MSc thesis, following the narrative of the final defence. Figures are the author's own; third-party material (reference papers, stock imagery) is cited, not reproduced. Node-level survey data obtained in confidence are not published; only the author's aggregated figures appear here.
 
-*License: to be defined.*
+
