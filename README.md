@@ -3,10 +3,7 @@
 **MSc thesis — Physics of Complex Systems, Politecnico di Torino (2026)**
 Candidate: **Flavio Bidolli** · Advisors: **Prof. Mauro Giorcelli**, **Mattia Bartoli**
 
-*A supply-chain optimisation model that asks a single question: at what price should a carbon credit be set so that an optimised Italian biochar supply chain can pay for itself while selling biochar at a price competitive with carbon black?*
-
-> *"Formulating the right question is pure gold."*
-> — Marc Mézard, *Where Mathematics Is Headed in the Age of AI* (15 September 2026)
+*A supply-chain optimisation model that asks the following question: at what price should a carbon credit be set so that an optimised Italian biochar supply chain can pay for itself while selling biochar at a price competitive with carbon black?*
 
 This page is a narrated summary of the thesis. It follows the line of the final defence (28 September 2026): from a personal interest to a precise research question, through the collapse of the Italian data, to a model and its results. All figures are my own.
 
@@ -14,9 +11,14 @@ This page is a narrated summary of the thesis. It follows the line of the final 
 
 ## 1. Why this question, and why from a physicist
 
-I looked for a problem where the hard part was not solving an equation a machine could already solve, but *framing* it — deciding what to measure and building data that do not yet exist. Climate change is one such problem, and for Italy it is not abstract: by mid-century the country is expected to lose on the order of **6% of GDP** to global warming (Euro-Mediterranean Centre on Climate Change).
+> *"Formulating the right question is pure gold."*
+> — Marc Mézard, *Where Mathematics Is Headed in the Age of AI* (15 September 2026)
 
-As team leader of **EcoPoli**, one of the Politecnico's student teams, I met biochar for the first time. Recalling that without carbon capture no serious fight against warming is possible, biochar stood out as a concrete ally: produced by **pyrolysis** — heating biomass in an oxygen-poor environment — waste biomass is turned into a stable, almost pure solid carbon that locks carbon away for a long time and has many industrial uses.
+The recent clamour after OpenAI’s revelation of the Navier-Stokes century-problem attack by AI gave me the perfect assist: a few weeks ago, (at the time this report was being written), Marc Mézard, French mathematician coomonly encountered in complex systems fields, wrote an article about the future of mathematicians in the world of AI. In it he says: “Formulating the right question is pure gold.” And that’s what I had already taken seriously.
+
+I looked for a problem where the hard part was not solving an equation a machine could already solve, but *framing* it — deciding what to measure and building data that did not yet exist. Climate change is one such problem, and for Italy it is not abstract: by mid-century the country is expected to lose on the order of **6% of GDP** to global warming (Euro-Mediterranean Centre on Climate Change).
+
+I became team leader of **EcoPoli**, one of the Politecnico's student teams, where I met biochar for the first time. Recalling that without carbon capture no serious fight against warming is possible, biochar stood out as a concrete ally: produced by **pyrolysis** — heating biomass in an oxygen-poor environment — waste biomass is turned into a stable, almost pure solid carbon that locks carbon away for a long time and has many industrial uses.
 
 ## 2. The data problem
 
@@ -33,22 +35,20 @@ On the biomass side, the official Italian sources are worse: each is a top-down 
 | **ENEA — Biomass Atlas** | Potential of agro-industrial residues, national scale | **Never completed**, funding cut |
 | **JRC — EU Biomass Flows** | Harmonised EU biomass production & trade, aggregated as fluxes | **Categories indiscernible**; no domestic-vs-import split |
 | **S2Biom — Italy roadmap** | Technical potential 2030: 34.4 Mt/yr dry matter | A **modelled** 2030 projection, theoretical; not sited, not measured |
-| **CRRA — Annex A** | Most recent national study; aggregates the above | **Internal inconsistencies** in the biochar data — which I found and flagged to the authors |
+| **CRRA — Annex A** | Most recent national study; aggregates the above | **Internal inconsistencies** in the biochar data — which **I found and flagged** to the authors |
 
 The consequence is that the usual tools of complex systems do not apply:
 
 - **Financial / stochastic models** (as used for biofuels) are impossible: the time series simply do not exist.
 - **Agent-based modelling** finds no well-defined agents: Italian producers barely interact, markets are highly localised, players are few and use near-identical technologies and business models.
 
-## 3. From a vague interest to a precise question
+## 3. From am activist's interest to a precise research question
 
-Two things turned this into a workable question.
-
-**The target came from the field, not from the desk.** Talking to the companies, I learned that the relevant competitor for biochar is **carbon black**: An **industrial demand** had appeared from **rubber industry** looking for biochar as a less-polluting substitute for carbon black in tyre production. That conversation, not the literature, is what fixed the economic benchmark — an existing industrial demand and a price to beat.
+A further layer of challenge: biochar has a million applications — which one to study? Biochar indeed has an enormous number of potential, intereasting and under research a+potential applications.
 
 **The method came from one article.** Among a scattered literature, Grimm et al. (2026) was the lead:
 
-> *"A candle of hope appears when I discovered Grimm's 2026 article: they study the European supply-chain market with an optimisation model for biochar produced from paper sludge; they had access to an important German company which disclosed to them their production and plant data, so they built a model to compute how to price a carbon credit — a financial tool to get money from the carbon dioxide subtracted from the atmosphere — in order to make the whole biochar-selling system break even, i.e. revenues equal costs."*
+> *"A candle of hope in all this complexity appears when I discovered Grimm's 2026 article: they study the European supply-chain market with an optimisation model for biochar produced from paper sludge; they had access to the data of an important German company which disclosed to them their production and plant data, so they built a model to compute how to price a carbon credit — a financial tool to get money from the carbon dioxide subtracted from the atmosphere — in order to make the whole biochar-selling system break even, i.e. revenues equal costs."*
 
 ### Building the dataset — I picked up the phone
 
@@ -56,7 +56,10 @@ The data for Italy were just non-existent; so I called the wood-chip (biomass) p
 
 ![Producer survey: companies and demand](images/producer_survey.png)
 
-Out of **131 wood-chip producers** called, **32** gave usable numbers and became **geolocalised nodes**, reduced to the **22** that enter the model; of the few **biochar producers active in Italy**, Biodea is the one documented in detail. The available biomass is roughly **ten times** the demand implied by the carbon-black substitution: the bottleneck is not the resource.
+Out of **131 wood-chip producers** called, **32** gave usable numbers and became **geolocalised nodes**, reduced to the **22** that enter the model; of the few **biochar producers active in Italy**. 
+Not everyone agreed to talk with me, but thanks to one of them I made an important discovery: Pirelli, a crucial Italian rubber company, asked for their biochar to attempt substitution of carbon black with a less polluting component. So an industrial demand for biochar exists!
+
+The available biomass is roughly **ten times** the demand implied by the carbon-black substitution: the bottleneck is not the resource.
 
 ### The research question
 Putting everything together a single, precise, final research question could be asked:
@@ -69,7 +72,7 @@ Putting everything together a single, precise, final research question could be 
 **The tension at its core.** The whole problem is a single trade between two opposing pulls:
 
 ![Scale versus transport — the cost function](images/scale_transport_tension.jpg)
-*Conceptual illustration of the model's tension, generated by the author with Google Gemini.*
+*Conceptual illustration of the model's tension, generated with Google Gemini.*
 
 - **Centralise** and exploit economies of scale — doubling a plant's capacity costs less than double;
 - **Stay sparse** and save on transport cost — and therefore on emissions. Less transport means **more net CO₂ removed**.
@@ -92,7 +95,7 @@ $$ F(y) \;=\; \bigl(\mathrm{CRF} + f_{\mathrm{OPEX}}\bigr)\, K_{\mathrm{ref}} \l
 
 so a plant $k$ times larger costs only $k^{0.6}$ times as much — the incentive to concentrate. Capacity is tied to the biomass actually routed to the plant, $\sum_i z_{ij} S_i \le y_j H$.
 
-This block carries **two nonlinearities** that a linear solver cannot take: the concave $y^{0.6}$ curve, and the product $x_j y_j$ (the fixed cost must be charged *only* when the plant is open, $x_j=1$). Grimm handled these with a single straight-line approximation plus a McCormick envelope; reproduced here, it failed outside the capacity window $[y_{\min},y_{\max}]$, wrongly refusing to aggregate small plants. They were replaced by a **piecewise-linear (PWL) surrogate** accurate over the whole domain, with the open/closed switch folded into the interpolation weights:
+This block carries **two nonlinearities** that a linear solver cannot take: the concave $y^{0.6}$ curve, and the product $x_j y_j$ (the fixed cost must be charged *only* when the plant is open, $x_j=1$). Grimm handled these with a single straight-line approximation plus a McCormick envelope; when reproduced here, it failed outside the capacity window $[y_{\min},y_{\max}]$, wrongly refusing to aggregate small plants. They were replaced by a **piecewise-linear (PWL) surrogate** accurate over the whole domain, with the open/closed switch folded into the interpolation weights:
 
 ![Economies of scale and its piecewise-linear surrogate](images/economies_of_scale_pwl.png)
 
@@ -147,7 +150,7 @@ Adopting this framework carries a substantive assumption, made explicit in the t
 
 **Validation.** A deliberately controllable, unrealistic scenario — identical small modules stacked in parallel, no economies of scale — behaves exactly as expected: cost grows linearly, and the arrows reveal non-obvious optima such as switched-off nodes and biomass hauled to saturate a module before opening a new one.
 
-![Validation — Biodea modules in parallel](images/validation_biodea.png)
+![Validation — Biodea - modules in parallel](images/validation_biodea.png)
 
 **Varying the transport tariff.** As transport gets dearer, the optimum breaks from a single central plant into several — the geography decentralises, and the break-even credit rises.
 
@@ -186,7 +189,7 @@ Instagram: [@eco_poli](https://www.instagram.com/eco_poli/)
 
 ## Acknowledgements
 
-I thank my advisors **Mattia Bartoli** and **Mauro Giorcelli** for the opportunity of this work; the **CREA** association, in particular **Irene Criscuoli**, **Valentina Lasorella** and **Prof. David Chiaramonti**, for their time and advice; **Silvia Scozzafaglia** for her contribution on the carbon-credit component; and **Kiana Niazmand**, co-author of the reference article, for answering my questions about it. Thanks to the wood-chip producers who took part in the interviews, and to the companies that collaborated — **Biodea, AIEL, NeraBiochar, Moonlight Biochar, McMillan Agrotech, Evergreen Resources, Comim** — with a special thanks to **Francesco Barbagli** (Biodea).
+I thank my advisors **Mattia Bartoli** and **Mauro Giorcelli** for the opportunity of this work; the **CREA** association, in particular **Irene Criscuoli**, **Valentina Lasorella** and **Prof. David Chiaramonti**, for their time and advice; **Silvia Scozzafaglia** for her contribution on the carbon-credit component; and **Kiana Niazmand**, co-author of the reference article, for answering my questions about it. Thanks to the wood-chip producers who took part in the interviews, and to the companies that collaborated — **Biodea, AIEL, NeraBiochar, Moonlight Biochar, McMillan Agrotech, Evergreen Resources, Comim** — with a special thanks to **Francesco Barbagli**.
 
 ---
 
