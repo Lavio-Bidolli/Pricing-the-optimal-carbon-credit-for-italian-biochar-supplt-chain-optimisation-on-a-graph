@@ -9,6 +9,17 @@ This page is a narrated summary of the thesis. It follows the line of the final 
 
 ---
 
+## Contents
+
+1. [Why this question, and why from a physicist](#1-why-this-question-and-why-from-a-physicist)
+2. [The data problem](#2-the-data-problem)
+3. [From am activist's interest to a precise research question](#3-from-am-activists-interest-to-a-precise-research-question)
+4. [The model](#4-the-model)
+5. [Results](#5-results)
+6. [Conclusion](#6-conclusion)
+
+---
+
 ## 1. Why this question, and why from a physicist
 
 > *"Formulating the right question is pure gold."*
@@ -60,6 +71,8 @@ Out of **131 wood-chip producers** called, **32** gave usable numbers and became
 Not everyone agreed to talk with me, but thanks to one of them I made an important discovery: Pirelli, a crucial Italian rubber company, asked for their biochar to attempt substitution of carbon black with a less polluting component. So an industrial demand for biochar exists!
 
 The available biomass is roughly **ten times** the demand implied by the carbon-black substitution: the bottleneck is not the resource.
+
+![Biochar producers active in Italy (anonymised)](images/biochar_producers.png)
 
 ### The research question
 Putting everything together a single, precise, final research question could be asked:
