@@ -72,7 +72,11 @@ Not everyone agreed to talk with me, but thanks to one of them I made an importa
 
 The available biomass is roughly **ten times** the demand implied by the carbon-black substitution: the bottleneck is not the resource.
 
-![Biochar producers active in Italy (anonymised)](images/biochar_producers.png)
+![The wood-chip producer dataset (anonymised)](images/chip_dataset.png)
+*The anonymised wood-chip producer dataset (22 nodes). **(A)** output is concentrated — the top five nodes supply 74%; **(B)** selling prices span 50–165 €/t (median 85), with one flagged outlier; **(C)** even among the nodes that answered, many figures had to be estimated rather than declared; **(D)** each node's self-assessed data reliability.*
+
+![Biochar producers active in Italy — CREA interviews (anonymised)](images/biochar_producers.png)
+*Biochar producers active in Italy — data from CREA interviews, anonymised (A–F).*
 
 ### The research question
 Putting everything together a single, precise, final research question could be asked:
