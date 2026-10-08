@@ -13,7 +13,7 @@ This page is a narrated summary of the thesis. It follows the line of the final 
 
 1. [Why this question, and why from a physicist](#1-why-this-question-and-why-from-a-physicist)
 2. [The data problem](#2-the-data-problem)
-3. [From am activist's interest to a precise research question](#3-from-am-activists-interest-to-a-precise-research-question)
+3. [From an activist's interest to a precise research question](#3-from-am-activists-interest-to-a-precise-research-question)
 4. [The model](#4-the-model)
 5. [Results](#5-results)
 6. [Conclusion](#6-conclusion)
