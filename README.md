@@ -127,7 +127,7 @@ Because every producer's biomass is fully allocated somewhere ($\sum_j z_{ij}=1$
 
 $$ K^{\mathrm{tr}} \;=\; \sum_{i,j} \tau\, d_{ij}\, S_i\, z_{ij} $$
 
-with $d_{ij}$ the great-circle (haversine) distance and $\tau$ a flat tariff per tonne-kilometre. Concentrating the supply lowers the fixed cost but raises this term; the optimum balances the two.
+with $d_{ij}$ the great-circle (haversine) distance and $\tau$ a flat tariff per tonne-kilometre. Concentrating the supply lowers the fixed cost but raises this term; the optimum balances the two. Both the transport cost and the transport emissions (below) are charged on the **wet** mass $S_i$ actually hauled: the tariff (derived from per-kilometre costs of 25 t loads of chips as delivered) and the haulage emission factor are both per tonne-kilometre of wet chips, while plant capacities and process yields stay on a dry basis.
 
 **Simplifications made explicit.** Sub-product (upgrading) plants are dropped — Italy has none, so by-products are refined on site. A **single conversion technology** is kept, because only one is currently in use. The model is **static** (one annual period, no time index). Transport uses **straight-line distances** (the road detour is absorbed into $\tau$) and a **single flat tariff** (no load-, direction- or vehicle-dependence), and only inbound feedstock transport is counted. Feedstock is assumed to be of a single quality, so its price $\pi$ is uniform and only swept in the sensitivity analysis.
 
@@ -170,9 +170,9 @@ Adopting this framework carries a substantive assumption, made explicit in the t
 
 | Transport tariff τ | Open plants | Break-even credit |
 |---|---|---|
-| 0.077 €/(t·km) | 1 | **251 €/tCO₂** |
-| 0.3 €/(t·km) | 4 | 310 €/tCO₂ |
-| 1 €/(t·km) | 7 | 345 €/tCO₂ |
+| 0.077 €/(t·km) | 1 | **242 €/tCO₂** |
+| 0.3 €/(t·km) | 4 | 302 €/tCO₂ |
+| 1 €/(t·km) | 7 | 337 €/tCO₂ |
 
 ![Optimal siting, low transport cost](images/siting_tau_low.png)
 ![Optimal siting, medium transport cost](images/siting_tau_mid.png)
@@ -186,7 +186,7 @@ Adopting this framework carries a substantive assumption, made explicit in the t
 
 ![Optimal versus non-optimal configurations](images/optimal_vs_nonoptimal.png)
 
-**Headline.** Under highly conservative assumptions, a carbon credit in the range of **251 – 1,108 €/tCO₂** (economies of scale exploited vs. not exploited) lets biochar reach a selling price (~0.12 €/kg) competitive with carbon black at the volumes the market would require.
+**Headline.** Under highly conservative assumptions, a carbon credit in the range of **242 – 1,100 €/tCO₂** (economies of scale exploited vs. not exploited) lets biochar reach a selling price (0.12 €/kg, the carbon-black reference price and therefore the upper bound of competitiveness) competitive with carbon black at the volumes the market would require.
 
 ## 6. Conclusion
 
