@@ -1,0 +1,8 @@
+# Libraries needed to run the toy biochar model.
+# Install them all at once with:  pip install -r requirements.txt
+
+pyomo>=6.7      # lets us write the optimisation problem in Python
+highspy>=1.7    # the HiGHS solver that actually crunches it (used via Pyomo's appsi_highs)
+pandas>=2.0     # the small tables for nodes and results
+numpy>=1.24     # fast arrays and maths (distances, averages)
+matplotlib>=3.7 # draws the figures (maps, tornado, curves)
